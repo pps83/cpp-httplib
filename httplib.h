@@ -18011,9 +18011,10 @@ inline Client::Client(const std::string &scheme_host_port,
 #ifndef CPPHTTPLIB_NO_EXCEPTIONS
       std::string msg = "'" + scheme + "' scheme is not supported.";
       throw std::invalid_argument(msg);
-#endif
+#else
       cli_ = detail::make_unique<detail::InvalidClientImpl>();
       return;
+#endif
     }
 
     auto is_ssl = scheme == "https";
@@ -23435,8 +23436,9 @@ inline WebSocketClient::WebSocketClient(
 #ifndef CPPHTTPLIB_NO_EXCEPTIONS
       std::string msg = "'" + scheme + "' scheme is not supported.";
       throw std::invalid_argument(msg);
-#endif
+#else
       return;
+#endif
     }
 
     auto is_ssl = scheme == "wss";
